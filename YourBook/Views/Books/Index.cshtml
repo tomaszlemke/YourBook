@@ -10,15 +10,17 @@
         <tr>
             <th>Book</th>
             <th>Genre</th>
+            <th>Author</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var book in Model)
         {
-            <tr>
-                <td>@Html.ActionLink(book.Name, "Details", "Books", new { id = book.Id }, null)</td>
-                <td>@book.Genre.Name</td>
-            </tr>
+        <tr>
+            <td>@Html.ActionLink(book.Name, "Details", "Books", new { id = book.Id }, null)</td>
+            <td>@book.Author</td>
+            <td>@book.Genre.Name</td>
+        </tr>
         }
     </tbody>
 </table>

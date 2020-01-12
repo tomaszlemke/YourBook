@@ -12,6 +12,10 @@ namespace YourBook.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string Author { get; set; }
         [Required]
         public Genre Genre { get; set; }
         public byte GenreId { get; set; }

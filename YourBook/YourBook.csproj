@@ -231,6 +231,14 @@
     <Compile Include="Migrations\202001121527454_AddGenres.Designer.cs">
       <DependentUpon>202001121527454_AddGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001121540416_AddBooks1.cs" />
+    <Compile Include="Migrations\202001121540416_AddBooks1.Designer.cs">
+      <DependentUpon>202001121540416_AddBooks1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001121555394_AddBooks2.cs" />
+    <Compile Include="Migrations\202001121555394_AddBooks2.Designer.cs">
+      <DependentUpon>202001121555394_AddBooks2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -364,6 +372,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001121527454_AddGenres.resx">
       <DependentUpon>202001121527454_AddGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121540416_AddBooks1.resx">
+      <DependentUpon>202001121540416_AddBooks1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121555394_AddBooks2.resx">
+      <DependentUpon>202001121555394_AddBooks2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
