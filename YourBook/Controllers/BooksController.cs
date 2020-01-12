@@ -5,26 +5,39 @@ using System.Web;
 using System.Web.Mvc;
 using YourBook.Models;
 using YourBook.ViewModels;
+using System.Data.Entity;
 
 namespace YourBook.Controllers
 {
     public class BooksController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public BooksController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public ViewResult Index()
         {
-            var books = GetBooks();
+            var books = _context.Books.Include(m => m.Genre).ToList();
 
             return View(books);
         }
 
-        private IEnumerable<Book> GetBooks()
+        public ActionResult Details(int id)
         {
-            return new List<Book>
-            {
-                new Book { Id = 1, Name = "Withcer" },
-                new Book { Id = 2, Name = "Hobbit" }
-            };
+            var movie = _context.Books.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie);
+        }
         }
 
     }
-}

@@ -211,10 +211,31 @@
     <Compile Include="Migrations\202001121451281_AddNameToMembershipType3.Designer.cs">
       <DependentUpon>202001121451281_AddNameToMembershipType3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001121500409_AddBirthdateToCustomer.cs" />
+    <Compile Include="Migrations\202001121500409_AddBirthdateToCustomer.Designer.cs">
+      <DependentUpon>202001121500409_AddBirthdateToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001121504161_AddBirthdateToCustomer2.cs" />
+    <Compile Include="Migrations\202001121504161_AddBirthdateToCustomer2.Designer.cs">
+      <DependentUpon>202001121504161_AddBirthdateToCustomer2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001121508579_AddingBDays.cs" />
+    <Compile Include="Migrations\202001121508579_AddingBDays.Designer.cs">
+      <DependentUpon>202001121508579_AddingBDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001121519503_AddBooks.cs" />
+    <Compile Include="Migrations\202001121519503_AddBooks.Designer.cs">
+      <DependentUpon>202001121519503_AddBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001121527454_AddGenres.cs" />
+    <Compile Include="Migrations\202001121527454_AddGenres.Designer.cs">
+      <DependentUpon>202001121527454_AddGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -282,6 +303,8 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +349,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001121451281_AddNameToMembershipType3.resx">
       <DependentUpon>202001121451281_AddNameToMembershipType3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121500409_AddBirthdateToCustomer.resx">
+      <DependentUpon>202001121500409_AddBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121504161_AddBirthdateToCustomer2.resx">
+      <DependentUpon>202001121504161_AddBirthdateToCustomer2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121508579_AddingBDays.resx">
+      <DependentUpon>202001121508579_AddingBDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121519503_AddBooks.resx">
+      <DependentUpon>202001121519503_AddBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001121527454_AddGenres.resx">
+      <DependentUpon>202001121527454_AddGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
