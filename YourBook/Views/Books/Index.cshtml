@@ -5,19 +5,23 @@
 }
 
 <h2>Books</h2>
+<p>
+    @Html.ActionLink("New Book", "New", "Books", null, new { @class = "btn btn-primary" })
+</p>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Book</th>
-            <th>Genre</th>
             <th>Author</th>
+            <th>Genre</th>
+
         </tr>
     </thead>
     <tbody>
         @foreach (var book in Model)
         {
         <tr>
-            <td>@Html.ActionLink(book.Name, "Details", "Books", new { id = book.Id }, null)</td>
+            <td>@Html.ActionLink(book.Name, "Edit", "Books", new { id = book.Id }, null)</td>
             <td>@book.Author</td>
             <td>@book.Genre.Name</td>
         </tr>
