@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using YourBook.Migrations;
+using System.Data.Entity;
 using YourBook.Models;
 using YourBook.ViewModels;
-using System.Data.Entity;
+
 
 namespace YourBook.Controllers
 {
@@ -25,25 +25,19 @@ namespace YourBook.Controllers
 
         public ViewResult Index()
         {
-            var books = _context.Books.Include(m => m.Genre).ToList();
+            if (User.IsInRole(RoleName.CanManageBooks))
+                return View("List");
 
-            return View(books);
+            return View("ReadOnlyList");
         }
 
-        public ActionResult Details(int id)
-        {
-            var book = _context.Books.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
-            if (book == null)
-                return HttpNotFound();
 
-            return View(book);
-        }
-
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
-            var viewModel = new BookFormViewModel
 
+            var viewModel = new BookFormViewModel
             {
                 Genres = genres
             };
@@ -51,6 +45,7 @@ namespace YourBook.Controllers
             return View("BookForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Edit(int id)
         {
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
@@ -66,8 +61,38 @@ namespace YourBook.Controllers
             return View("BookForm", viewModel);
         }
 
+        public ActionResult Details(int id)
+        {
+            var book = _context.Books.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            if (book == null)
+                return HttpNotFound();
+
+            return View(book);
+        }
+
+
+        // GET: Books/Random
+        public ActionResult Random()
+        {
+            var book = new Book() { Name = "Shrek!" };
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1" },
+                new Customer { Name = "Customer 2" }
+            };
+
+            var viewModel = new RandomBookViewModel
+            {
+                Book = book,
+                Customers = customers
+            };
+
+            return View(viewModel);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Save(Book book)
         {
             if (!ModelState.IsValid)
@@ -101,5 +126,4 @@ namespace YourBook.Controllers
             return RedirectToAction("Index", "Books");
         }
     }
-
 }

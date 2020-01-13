@@ -11,7 +11,7 @@ namespace YourBook.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var customer = (Customer)validationContext.ObjectInstance;
-                if (customer.MembershipTypeID == MembershipType.Free ||customer.MembershipTypeID == MembershipType.Notdefined) 
+                if (customer.MembershipTypeId == MembershipType.Free ||customer.MembershipTypeId == MembershipType.Notdefined) 
                     return ValidationResult.Success;
 
                 if (customer.Birthdate == null)

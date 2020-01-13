@@ -11,10 +11,12 @@ namespace YourBook
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/bootbox.js",
-                        "~/Scripts/Respond.js",
-                        "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js"
+                        "~/scripts/bootbox.js",
+                        "~/Scripts/respond.js",
+                        "~/scripts/datatables/jquery.datatables.js",
+                        "~/scripts/datatables/datatables.bootstrap.js",
+                        "~/scripts/typeahead.bundle.js",
+                        "~/scripts/toastr.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -29,6 +31,7 @@ namespace YourBook
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.min.css",
                       "~/Content/Site.css"));
         }
     }

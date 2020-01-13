@@ -34,8 +34,7 @@ namespace YourBook.ViewModels
         [Required]
         public byte? NumberInStock { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        
         public string Title
         {
             get
@@ -53,6 +52,7 @@ namespace YourBook.ViewModels
         {
             Id = book.Id;
             Name = book.Name;
+            Author = book.Author;
             ReleaseDate = book.ReleaseDate;
             NumberInStock = book.NumberInStock;
             GenreId = book.GenreId;

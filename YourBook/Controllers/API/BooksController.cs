@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using YourBook.Dtos;
+using System.Data.Entity;
 using YourBook.Models;
 
-namespace YourBook.Controllers.API
+namespace YourBook.Controllers.Api
 {
     public class BooksController : ApiController
     {
@@ -16,10 +17,21 @@ namespace YourBook.Controllers.API
         {
             _context = new ApplicationDbContext();
         }
-        public IEnumerable<BookDto> GetBooks()
+
+        public IEnumerable<BookDto> GetBooks(string query = null)
         {
-            return _context.Books.ToList().Select(Mapper.Map<Book, BookDto>);
+            var booksQuery = _context.Books
+                .Include(m => m.Genre)
+                .Where(m => m.NumberAvailable > 0);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                booksQuery = booksQuery.Where(m => m.Name.Contains(query));
+
+            return booksQuery
+                .ToList()
+                .Select(Mapper.Map<Book, BookDto>);
         }
+
         public IHttpActionResult GetBook(int id)
         {
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
@@ -31,6 +43,7 @@ namespace YourBook.Controllers.API
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult CreateBook(BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -45,7 +58,8 @@ namespace YourBook.Controllers.API
         }
 
         [HttpPut]
-        public IHttpActionResult UpdateBook(int id, BookDto movieDto)
+        [Authorize(Roles = RoleName.CanManageBooks)]
+        public IHttpActionResult UpdateBook(int id, BookDto bookDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -54,14 +68,17 @@ namespace YourBook.Controllers.API
 
             if (bookInDb == null)
                 return NotFound();
-            Mapper.Map(movieDto, bookInDb);
+
+            Mapper.Map(bookDto, bookInDb);
 
             _context.SaveChanges();
+
             return Ok();
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteMovie(int id)
+        [Authorize(Roles = RoleName.CanManageBooks)]
+        public IHttpActionResult DeleteBook(int id)
         {
             var bookInDb = _context.Books.SingleOrDefault(c => c.Id == id);
 
@@ -75,4 +92,4 @@ namespace YourBook.Controllers.API
         }
     }
 }
-    
+

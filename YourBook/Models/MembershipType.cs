@@ -12,7 +12,7 @@ namespace YourBook.Models
         [Required]
         public string Name { get; set; }
         public short SignUpFee { get; set; }
-        public byte DurrationInMonths { get; set; }
+        public byte DurationInMonths { get; set; }
         public byte DurrationOfLoan { get; set; }
 
         public static readonly byte Notdefined = 0;

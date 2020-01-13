@@ -14,10 +14,12 @@ namespace YourBook.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
+
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -25,8 +27,8 @@ namespace YourBook.Controllers
             {
                 Customer = new Customer(),
                 MembershipTypes = membershipTypes
-
             };
+
             return View("CustomerForm", viewModel);
         }
 
@@ -40,34 +42,30 @@ namespace YourBook.Controllers
                 {
                     Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
-
                 };
-                return View("CustomerForm", viewModel);
 
+                return View("CustomerForm", viewModel);
             }
+
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
-
             else
             {
-                var customerInDB = _context.Customers.Single(c => c.Id == customer.Id);
-
-                customerInDB.Name = customer.Name;
-                customerInDB.Birthdate = customer.Birthdate;
-                customerInDB.MembershipTypeID = customer.MembershipTypeID;
-                customerInDB.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
+
             _context.SaveChanges();
 
-            return RedirectToAction("Index","Customers");
+            return RedirectToAction("Index", "Customers");
         }
 
-          
         public ViewResult Index()
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customer);
+            return View();
         }
 
         public ActionResult Details(int id)

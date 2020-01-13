@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using YourBook.Dtos;
 using YourBook.Models;
 
@@ -13,14 +9,17 @@ namespace YourBook.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
             Mapper.CreateMap<Book, BookDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+            Mapper.CreateMap<Genre, GenreDto>();
+
+
             Mapper.CreateMap<CustomerDto, Customer>()
-               .ForMember(c => c.Id, opt => opt.Ignore());
+                .ForMember(c => c.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<BookDto, Book>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
-        }
 
+        }
     }
 }
