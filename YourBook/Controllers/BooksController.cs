@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using YourBook.Migrations;
 using YourBook.Models;
@@ -43,8 +42,8 @@ namespace YourBook.Controllers
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
-
             var viewModel = new BookFormViewModel
+
             {
                 Genres = genres
             };
@@ -61,7 +60,6 @@ namespace YourBook.Controllers
 
             var viewModel = new BookFormViewModel
             {
-                Book = book,
                 Genres = _context.Genres.ToList()
             };
 
@@ -71,6 +69,17 @@ namespace YourBook.Controllers
         [HttpPost]
         public ActionResult Save(Book book)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new BookFormViewModel(book)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("BookForm", viewModel);
+            }
+
+
             if (book.Id == 0)
             {
                 book.DateAdded = DateTime.Now;

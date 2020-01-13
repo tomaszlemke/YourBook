@@ -9,18 +9,18 @@ namespace YourBook.Models
     public class Book
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter book's name")]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Author's name")]
         [StringLength(255)]
         public string Author { get; set; }
        
         public Genre Genre { get; set; }
 
         [Display(Name = "Genre")]
-        [Required]
+        [Required(ErrorMessage = "Please enter book's Genre")]
         public byte GenreId { get; set; }
 
         public DateTime DateAdded { get; set; }

@@ -10,7 +10,7 @@ namespace YourBook.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Customer's name")]
         [StringLength(150)]
         public string Name { get; set; }
 
@@ -22,6 +22,7 @@ namespace YourBook.Models
         public byte MembershipTypeID { get; set; }
 
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }
 }
