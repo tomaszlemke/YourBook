@@ -5,7 +5,7 @@
 }
 
 <h2>New Customer</h2>
-
+@Html.ValidationSummary(true, "Please fill the minimum required fileds marked in red")
 @using (Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
@@ -34,6 +34,10 @@
     </div>
 
     @Html.HiddenFor(m => m.Customer.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 
+}
+@section scripts
+{ @Scripts.Render("~/bundles/jqueryval")
 }

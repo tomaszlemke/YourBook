@@ -15,5 +15,8 @@ namespace YourBook.Models
         public byte DurrationInMonths { get; set; }
         public byte DurrationOfLoan { get; set; }
 
+        public static readonly byte Notdefined = 0;
+        public static readonly byte Free = 1;
+
     }
 }

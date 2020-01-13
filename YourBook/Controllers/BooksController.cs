@@ -58,7 +58,7 @@ namespace YourBook.Controllers
             if (book == null)
                 return HttpNotFound();
 
-            var viewModel = new BookFormViewModel
+            var viewModel = new BookFormViewModel(book)
             {
                 Genres = _context.Genres.ToList()
             };
@@ -67,6 +67,7 @@ namespace YourBook.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Book book)
         {
             if (!ModelState.IsValid)

@@ -40,10 +40,7 @@ namespace YourBook.ViewModels
         {
             get
             {
-                if (Id != null && Id != 0)
-                    return "Edit Book";
-
-                return "New Book";
+                    return Id != 0 ? "Edit Book" : "New Book"; 
             }
         }
 
