@@ -21,8 +21,7 @@ namespace YourBook.Controllers.Api
         public IEnumerable<BookDto> GetBooks(string query = null)
         {
             var booksQuery = _context.Books
-                .Include(m => m.Genre)
-                .Where(m => m.NumberAvailable > 0);
+                .Include(m => m.Genre);
 
             if (!String.IsNullOrWhiteSpace(query))
                 booksQuery = booksQuery.Where(m => m.Name.Contains(query));
@@ -43,7 +42,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageBooks)]
+      //  [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult CreateBook(BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -58,7 +57,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpPut]
-        [Authorize(Roles = RoleName.CanManageBooks)]
+      //  [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult UpdateBook(int id, BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -77,7 +76,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageBooks)]
+     //  [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult DeleteBook(int id)
         {
             var bookInDb = _context.Books.SingleOrDefault(c => c.Id == id);
