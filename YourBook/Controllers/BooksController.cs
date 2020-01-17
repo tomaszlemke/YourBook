@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using YourBook.Models;
 using YourBook.ViewModels;
-
+using System.Net;
 
 namespace YourBook.Controllers
 {
@@ -124,68 +124,9 @@ namespace YourBook.Controllers
 
             return RedirectToAction("Index", "Books");
         }
-        /*
-        public ActionResult Delete(int id)
-        {
-            var book = _context.Books.SingleOrDefault(c => c.Id == id);
 
-            if (book == null)
-                return HttpNotFound();
-
-            _context.Books.Remove(book);
-
-            return View(_context.Books);
-        }
-
-    
-        
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-
-            var book = await _context.Books
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(book);
-        }
-
-        // POST: Books/Delete/5
-       
-        [HttpPost, ActionName("Delete")]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            var book = await _context.Books.FindAsync(id);
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
-            return View(_context.Books);
-        }
-
-        private bool BookExists(int id)
-        {
-            return _context.Books.Any(e => e.Id == id);
-        }
-        
-        /*
-        public ActionResult Delete(int id)
-        {
-
-            Book book = _context.get(id);
-
-            if (book == null)
-                return View("NotFound");
-            else
-                return View(_context.Books);
-        }
-        
-
-        // GET: /Books/Delete/5
+        // GET: Gras/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -197,29 +138,20 @@ namespace YourBook.Controllers
             {
                 return HttpNotFound();
             }
-            return View();
+            return View(book);
         }
 
-        // POST: /Books/Delete/5
+        // POST: Gras/Delete/5
         [HttpPost, ActionName("Delete")]
-  
+        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = _context.Books.Find(id);
             _context.Books.Remove(book);
-
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
-        */
-      
-
-
 
     }
-
-
 }
-
-
