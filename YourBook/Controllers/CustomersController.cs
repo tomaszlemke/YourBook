@@ -19,7 +19,7 @@ namespace YourBook.Controllers
         {
             _context.Dispose();
         }
-
+        [Authorize]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();

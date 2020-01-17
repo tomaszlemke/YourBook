@@ -28,11 +28,11 @@ namespace YourBook.Controllers
             /*if (User.IsInRole(RoleName.CanManageBooks))
                 return View("List");*/
 
-            return View();
+            return View(_context.Books);
         }
 
 
-      //  [Authorize(Roles = RoleName.CanManageBooks)]
+        //  [Authorize(Roles = RoleName.CanManageBooks)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
@@ -45,7 +45,7 @@ namespace YourBook.Controllers
             return View("BookForm", viewModel);
         }
 
-       // [Authorize(Roles = RoleName.CanManageBooks)]
+        // [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Edit(int id)
         {
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
@@ -90,9 +90,9 @@ namespace YourBook.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-       //[Authorize(Roles = RoleName.CanManageBooks)]
+        //[Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Save(Book book)
         {
             if (!ModelState.IsValid)
@@ -124,5 +124,102 @@ namespace YourBook.Controllers
 
             return RedirectToAction("Index", "Books");
         }
+        /*
+        public ActionResult Delete(int id)
+        {
+            var book = _context.Books.SingleOrDefault(c => c.Id == id);
+
+            if (book == null)
+                return HttpNotFound();
+
+            _context.Books.Remove(book);
+
+            return View(_context.Books);
+        }
+
+    
+        
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var book = await _context.Books
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);
+        }
+
+        // POST: Books/Delete/5
+       
+        [HttpPost, ActionName("Delete")]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
+            return View(_context.Books);
+        }
+
+        private bool BookExists(int id)
+        {
+            return _context.Books.Any(e => e.Id == id);
+        }
+        
+        /*
+        public ActionResult Delete(int id)
+        {
+
+            Book book = _context.get(id);
+
+            if (book == null)
+                return View("NotFound");
+            else
+                return View(_context.Books);
+        }
+        
+
+        // GET: /Books/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = _context.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        // POST: /Books/Delete/5
+        [HttpPost, ActionName("Delete")]
+  
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Book book = _context.Books.Find(id);
+            _context.Books.Remove(book);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        */
+      
+
+
+
     }
+
+
 }
+
+

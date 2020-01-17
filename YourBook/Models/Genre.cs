@@ -10,7 +10,7 @@ namespace YourBook.Models
     {
         public byte Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select Genre")]
         [StringLength(255)]
         public string Name { get; set; }
     }

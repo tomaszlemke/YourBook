@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using YourBook.Dtos;
 using YourBook.Models;
+using YourBook.App_Start;
 
 namespace YourBook.App_Start
 {

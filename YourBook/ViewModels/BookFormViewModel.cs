@@ -9,6 +9,7 @@ namespace YourBook.ViewModels
 {
     public class BookFormViewModel
     {
+        [Required(ErrorMessage = "Please select Genre")]
         public IEnumerable<Genre> Genres { get; set; }
 
         public int? Id { get; set; }
@@ -22,12 +23,17 @@ namespace YourBook.ViewModels
         public string Author { get; set; }
 
         [Display(Name = "Genre")]
-        [Required]
+        [Required(ErrorMessage = "Please select Genre")]
         public byte? GenreId { get; set; }
 
         [Display(Name = "Release Date")]
         [Required]
         public DateTime? ReleaseDate { get; set; }
+
+        [Display(Name = "Date Added")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime DateAdded { get; set; }
+
 
         [Display(Name = "Number in Stock")]
         [Range(1, 20)]

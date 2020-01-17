@@ -17,20 +17,15 @@ namespace YourBook.Controllers.Api
         {
             _context = new ApplicationDbContext();
         }
-
-        public IEnumerable<BookDto> GetBooks(string query = null)
+        
+        public IEnumerable<BookDto> GetBooks()
         {
-            var booksQuery = _context.Books
-                .Include(m => m.Genre);
-
-            if (!String.IsNullOrWhiteSpace(query))
-                booksQuery = booksQuery.Where(m => m.Name.Contains(query));
-
-            return booksQuery
-                .ToList()
-                .Select(Mapper.Map<Book, BookDto>);
+            return _context.Books
+               .Include(m => m.Genre)
+               .ToList()
+               .Select(Mapper.Map<Book, BookDto>);
         }
-
+     
         public IHttpActionResult GetBook(int id)
         {
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
@@ -42,7 +37,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpPost]
-      //  [Authorize(Roles = RoleName.CanManageBooks)]
+        [Authorize]
         public IHttpActionResult CreateBook(BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -57,7 +52,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpPut]
-      //  [Authorize(Roles = RoleName.CanManageBooks)]
+        [Authorize]
         public IHttpActionResult UpdateBook(int id, BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -76,7 +71,7 @@ namespace YourBook.Controllers.Api
         }
 
         [HttpDelete]
-     //  [Authorize(Roles = RoleName.CanManageBooks)]
+        [Authorize]
         public IHttpActionResult DeleteBook(int id)
         {
             var bookInDb = _context.Books.SingleOrDefault(c => c.Id == id);

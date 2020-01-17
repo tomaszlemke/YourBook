@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
@@ -43,6 +44,8 @@ namespace Vidly.Controllers.Api
 
             return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
+
+
 
         // POST /api/customers
         [HttpPost]

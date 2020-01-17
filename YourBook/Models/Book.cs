@@ -23,11 +23,17 @@ namespace YourBook.Models
         [Required]
         public byte GenreId { get; set; }
 
+
+        [Display(Name = "Date Added")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime DateAdded { get; set; }
 
+        [Required(ErrorMessage = "Please enter release date")]
         [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime ReleaseDate { get; set; }
 
+        [Required(ErrorMessage = "Please enter number in stock 1-20")]
         [Display(Name = "Number in Stock")]
         [Range(1, 20)]
         public byte NumberInStock { get; set; }
